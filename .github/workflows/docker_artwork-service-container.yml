@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://yanayartwork.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_56753214656d4b208adb1ce1d6ab44ed }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_8af5784fd5404d25ae880813622502fb }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_b4409d7409144e51bead54679c3f47ad }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_8a3cb5a3d64d4da1946235e1efdb175d }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: yanayartwork.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_56753214656d4b208adb1ce1d6ab44ed }}/artwork-service:${{ github.sha }}
+        tags: yanayartwork.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b4409d7409144e51bead54679c3f47ad }}/artwork-service:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'artwork-service-container'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ed9156c0a9924bc189064f7a78aacf83 }}
-        images: 'yanayartwork.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_56753214656d4b208adb1ce1d6ab44ed }}/artwork-service:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_aeb818f6ce8d4fd4bc8bd91e1dcb07b4 }}
+        images: 'yanayartwork.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b4409d7409144e51bead54679c3f47ad }}/artwork-service:${{ github.sha }}'
